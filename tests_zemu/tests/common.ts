@@ -38,205 +38,54 @@ export const DEVICE_MODELS: IDeviceModel[] = [
   { name: 'stax', prefix: 'ST', path: APP_PATH_ST },
 ]
 
-export const example_tx_str_basic = {
-  account_number: '108',
-  chain_id: 'cosmoshub-4',
-  fee: {
-    amount: [
-      {
-        amount: '600',
-        denom: 'uatom',
-      },
-    ],
-    gas: '200000',
+export const example_tx_str_MsgSend = {
+  "account_number": "588",
+  "chain_id": "mayachain",
+  "fee": {
+      "amount": [],
+      "gas": "2000000"
   },
-  memo: '',
-  msgs: [
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h',
-        validator_address: 'cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x',
-      },
-    },
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h',
-        validator_address: 'cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0',
-      },
-    },
-  ],
-  sequence: '106',
-}
-
-export const example_tx_str_expert = {
-  account_number: '108',
-  chain_id: 'cosmoshub-2',
-  fee: {
-    amount: [
+  "memo": "TestMemo",
+  "msgs": [
       {
-        amount: '600',
-        denom: 'uatom',
-      },
-    ],
-    gas: '200000',
-  },
-  memo: '',
-  msgs: [
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl87jycah',
-        validator_address: 'cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x',
-      },
-    },
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl87jycah',
-        validator_address: 'cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0',
-      },
-    },
-  ],
-  sequence: '106',
-}
-
-export const example_tx_str_combined = {
-  account_number: '108',
-  chain_id: 'cosmoshub-4',
-  fee: {
-    amount: [
-      {
-        amount: '600',
-        denom: 'uatom',
-      },
-    ],
-    gas: '200000',
-  },
-  memo: '',
-  msgs: [
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h',
-        validator_address: 'cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6',
-      },
-    },
-    {
-      type: 'cosmos-sdk/MsgDelegate',
-      value: {
-        amount: {
-          amount: '20139397',
-          denom: 'uatom',
-        },
-        delegator_address: 'cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h',
-        validator_address: 'cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6',
-      },
-    },
-  ],
-  sequence: '106',
-}
-
-export const example_tx_str_basic2 = {
-  account_number: '482',
-  chain_id: 'cosmoshub-4',
-  fee: {
-    amount: [],
-    gas: '10000000',
-  },
-  memo: '',
-  msgs: [
-    {
-      type: 'somechain/MsgNew',
-      value: {
-        coins: [
-          {
-            amount: '20139397',
-            asset: 'uatom',
-          },
-        ],
-        memo: 'memo_text_goes_here',
-        signer: 'cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h',
-      },
-    },
-  ],
-  sequence: '6',
-}
-
-export const example_tx_str_basic_extra_fields = {
-  account_number: '108',
-  chain_id: 'cosmoshub-4',
-  extra_field: 'empty',
-  fee: {
-    amount: [
-      {
-        amount: '600',
-        denom: 'uatom',
-      },
-    ],
-    gas: '200000',
-  },
-  foo: 'bar',
-  memo: '',
-  msgs: [
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h',
-        validator_address: 'cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x',
-      },
-    },
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h',
-        validator_address: 'cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0',
-      },
-    },
-  ],
-  sequence: '106',
-  unknown_field: 123456
-}
-
-export const ibc_denoms = {
-  account_number: "0",
-  chain_id: "cosmoshub-4",
-  fee: {
-    amount: [
-      {
-        "amount": '5',
-        "denom": 'uatom',
+          "type": "mayachain/MsgSend",
+          "value": {
+              "amount": [
+                  {
+                      "amount": "150000000",
+                      "denom": "cacao"
+                  }
+              ],
+              "from_address": "tmaya1c648xgpter9xffhmcqvs7lzd7hxh0prgv5t5gp",
+              "to_address": "tmaya10xgrknu44d83qr4s4uw56cqxg0hsev5e68lc9z"
+          }
       }
-    ],
-    gas: '10000',
-  },
-  memo: "testmemo",
-  msgs: [
-    {
-      inputs: [
-        {
-          address: "cosmosaccaddr1d9h8qat5e4ehc5",
-          coins: [
-            {
-              amount: '10',
-              denom: 'ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2'
-            }
-          ]
-        }
-      ],
-      outputs: [
-        {
-          address: 'cosmosaccaddr1da6hgur4wse3jx32',
-          coins: [
-            {
-              amount: '10',
-              denom: 'ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2'
-            }
-          ]
-        }
-      ]
-    }
   ],
-  sequence: '1'
-}
+  "sequence": "5"
+};
+
+export const example_tx_str_MsgDeposit = {
+  "account_number": "588",
+  "chain_id": "mayachain",
+  "fee": {
+      "amount": [],
+      "gas": "10000000"
+  },
+  "memo": "",
+  "msgs": [
+      {
+          "type": "mayachain/MsgDeposit",
+          "value": {
+              "coins": [
+                  {
+                      "amount": "330000000",
+                      "asset": "MAYA.CACAO"
+                  }
+              ],
+              "memo": "SWAP:BNB.BNB:tbnb1qk2m905ypazwfau9cn0qnr4c4yxz63v9u9md20:",
+              "signer": "tmaya1c648xgpter9xffhmcqvs7lzd7hxh0prgv5t5gp"
+          }
+      }
+  ],
+  "sequence": "6"
+};

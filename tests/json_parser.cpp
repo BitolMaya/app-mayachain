@@ -365,7 +365,7 @@ namespace {
 
     TEST(TxValidationTest, ObjectGetValueCorrectFormat) {
         auto transaction =
-                R"({"account_number":"0","chain_id":"test-chain-1","fee":{"amount":[{"amount":"5","denom":"photon"}],"gas":"10000"},"memo":"testmemo","msgs":[{"inputs":[{"address":"cosmosaccaddr1d9h8qat5e4ehc5","coins":[{"amount":"10","denom":"atom"}]}],"outputs":[{"address":"cosmosaccaddr1da6hgur4wse3jx32","coins":[{"amount":"10","denom":"atom"}]}]}],"sequence":"1"})";
+                R"({"account_number":"0","chain_id":"test-chain-1","fee":{"amount":[{"amount":"5","denom":"photon"}],"gas":"10000"},"memo":"testmemo","msgs":[{"inputs":[{"address":"mayaaccaddr1d9h8qat5e4ehc5","coins":[{"amount":"10","denom":"cacao"}]}],"outputs":[{"address":"mayaaccaddr1da6hgur4wse3jx32","coins":[{"amount":"10","denom":"cacao"}]}]}],"sequence":"1"})";
         parsed_json_t parsed_json;
         JSON_PARSE(&parsed_json, transaction);
 

@@ -26,9 +26,9 @@ Transactions passed to the Ledger device will be in the following format. The Le
 ```json
 {
   "account_number": "123",
-  "chain_id": "cosmoshub-4",
+  "chain_id": "mayachain",
   "fee": {
-    "amount": [{"amount": "4000", "denom": "uatom"}, ...],
+    "amount": [{"amount": "4000", "denom": "cacao"}, ...],
     "gas": "40000"
   },
   "memo": "this is a comment",
