@@ -79,7 +79,7 @@ export const example_tx_str_MsgDeposit = {
               "coins": [
                   {
                       "amount": "330000000",
-                      "asset": "MAYA.CACAO"
+                      "asset": "MAYA.cacao"
                   }
               ],
               "memo": "SWAP:BNB.BNB:tbnb1qk2m905ypazwfau9cn0qnr4c4yxz63v9u9md20:",
