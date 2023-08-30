@@ -128,13 +128,9 @@ describe('Standard', function () {
   test.concurrent.each(DEVICE_MODELS)('sign MsgSend', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({
-        ...defaultOptions,
-        model: m.name,
-        approveKeyword: m.name === 'stax' ? 'QR' : '',
-        approveAction: ButtonKind.ApproveTapButton,
-      })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
+
       const path = [44, 931, 0, 0, 0]
       let tx = Buffer.from(JSON.stringify(example_tx_str_MsgSend), "utf-8")
 
@@ -147,19 +143,16 @@ describe('Standard', function () {
       // do not wait here..
       const signatureRequest = app.sign(path, tx)
 
-      await Zemu.sleep(3000)
-
-      // Reference window
-      for (let i = 0; i < 8; i++) {
-          await sim.clickRight()
-      }
-      await sim.clickBoth()
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sign_MsgSend`)
 
       let resp = await signatureRequest
       console.log(resp)
 
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual("No errors")
+      expect(resp).toHaveProperty('signature')
 
       // Now verify the signature
       const hash = crypto.createHash("sha256")
@@ -181,13 +174,9 @@ describe('Standard', function () {
   test.concurrent.each(DEVICE_MODELS)('sign MsgDeposit', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({
-        ...defaultOptions,
-        model: m.name,
-        approveKeyword: m.name === 'stax' ? 'QR' : '',
-        approveAction: ButtonKind.ApproveTapButton,
-      })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
+
       const path = [44, 931, 0, 0, 0]
       let tx = Buffer.from(JSON.stringify(example_tx_str_MsgDeposit), "utf-8")
 
@@ -200,19 +189,16 @@ describe('Standard', function () {
       // do not wait here..
       const signatureRequest = app.sign(path, tx)
 
-      await Zemu.sleep(3000)
-
-      // Reference window
-      for (let i = 0; i < 7; i++) {
-          await sim.clickRight()
-      }
-      await sim.clickBoth()
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sign_MsgDeposit`)
 
       let resp = await signatureRequest
       console.log(resp)
 
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual("No errors")
+      expect(resp).toHaveProperty('signature')
 
       // Now verify the signature
       const hash = crypto.createHash("sha256")
@@ -234,13 +220,12 @@ describe('Standard', function () {
   test.concurrent.each(DEVICE_MODELS)('sign expert MsgSend', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({
-        ...defaultOptions,
-        model: m.name,
-        approveKeyword: m.name === 'stax' ? 'QR' : '',
-        approveAction: ButtonKind.ApproveTapButton,
-      })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
+
+      // Enable expert
+      await sim.toggleExpertMode();
+
       const path = [44, 931, 0, 0, 0];
       let tx = Buffer.from(JSON.stringify(example_tx_str_MsgSend), "utf-8")
 
@@ -250,27 +235,19 @@ describe('Standard', function () {
       expect(respPk.error_message).toEqual("No errors")
       console.log(respPk)
 
-      // Switch to Expert Mode
-      await sim.clickRight()
-      await sim.clickRight()
-      await sim.clickBoth()
-
       // do not wait here..
       const signatureRequest = app.sign(path, tx)
 
-      await Zemu.sleep(3000)
-
-      // Reference window
-      for (let i = 0; i < 11; i++) {
-          await sim.clickRight()
-      }
-      await sim.clickBoth()
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sign_expert_MsgSend`)
 
       let resp = await signatureRequest
       console.log(resp)
 
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual("No errors")
+      expect(resp).toHaveProperty('signature')
 
       // Now verify the signature
       const hash = crypto.createHash("sha256")
