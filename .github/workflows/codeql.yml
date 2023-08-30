@@ -10,6 +10,7 @@ on:
 
 jobs:
   analyse:
+    permissions: write-all
     name: Analyse
     strategy:
       matrix:
