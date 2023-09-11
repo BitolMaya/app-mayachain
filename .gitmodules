@@ -12,4 +12,4 @@
 	url = https://github.com/Zondax/ledger-zxlib.git
 [submodule "deps/stax-secure-sdk"]
 	path = deps/stax-secure-sdk
-	url = https://github.com/LedgerHQ/ledger-secure-sdk
+	url = https://github.com/LedgerHQ/ledger-secure-sdk.git

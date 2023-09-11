@@ -24,14 +24,14 @@ typedef struct {
 
 // To enable custom config for a new chain, just add a new entry in this array with path, hrp and encoding
 static const chain_config_t chainConfig[] = {
-    // {118, cosmos, BECH32_COSMOS},
+    // {118, maya, BECH32_COSMOS},
     {60, "inj", BECH32_ETH},
 };
 
 static const uint32_t chainConfigLen = sizeof(chainConfig) / sizeof(chainConfig[0]);
 
 address_encoding_e checkChainConfig(uint32_t path, const char* hrp, uint8_t hrpLen) {
-    // Always allowed for 118 (default Cosmos)
+    // Always allowed for 118 (default MAYAChain)
     if (path == HDPATH_1_DEFAULT) {
         return BECH32_COSMOS;
     }
